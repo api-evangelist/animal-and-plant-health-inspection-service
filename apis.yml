@@ -1,32 +1,19 @@
 aid: animal-and-plant-health-inspection-service
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/animal-and-plant-health-inspection-service/refs/heads/main/apis.yml
 name: Animal and Plant Health Inspection Service
+tags:
+  - API
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+created: '2024-11-21'
+modified: '2024-12-22'
+position: Consumer
 description: >-
   USDAs Animal and Plant Health Inspection Service (APHIS) protects the health
   and value of U.S. agriculture and natural resources.
-type: Index
-position: Consumer
-access: 3rd-Party
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
-created: '2024-11-21'
-modified: '2024-11-21'
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/animal-and-plant-health-inspection-service/refs/heads/main/apis.yml
-specificationVersion: '0.19'
-apis:
-  - aid: >-
-      animal-and-plant-health-inspection-service:animal-and-plant-health-inspection-service
-    name: Animal and Plant Health Inspection Service
-    description: >-
-      USDAs Animal and Plant Health Inspection Service (APHIS) protects the
-      health and value of U.S. agriculture and natural resources.
-    humanURL: https://www.aphis.usda.gov/
-    tags:
-      - API
-    properties:
-      - type: Documentation
-        url: https://www.aphis.usda.gov/
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
+specificationVersion: '0.19'
