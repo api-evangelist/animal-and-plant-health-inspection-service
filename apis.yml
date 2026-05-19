@@ -105,6 +105,8 @@ type: Index
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: Government
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/usda-aphis
   - url: https://www.aphis.usda.gov/
     name: APHIS Website
     type: Website
