@@ -11,7 +11,7 @@ apis:
       - Permits
       - Plant Health
       - Search
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://aphis.my.site.com/PublicSearchTool/s/
     humanURL: https://aphis.my.site.com/PublicSearchTool/s/
     properties:
@@ -31,7 +31,7 @@ apis:
       - Permits
       - Plant Health
       - Regulatory
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://efile.aphis.usda.gov
     humanURL: https://efile.aphis.usda.gov/s/
     properties:
@@ -54,7 +54,7 @@ apis:
       - Import
       - Plant Health
       - Regulatory
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://acir.aphis.usda.gov
     humanURL: https://acir.aphis.usda.gov/s/
     properties:
@@ -75,7 +75,7 @@ apis:
       - GIS
       - Mapping
       - Plant Health
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://www.aphis.usda.gov/aphis-ams-geospatial-hub
     humanURL: https://www.aphis.usda.gov/aphis-ams-geospatial-hub
     properties:
@@ -102,7 +102,7 @@ tags:
   - USDA
   - Wildlife
 type: Index
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: Government
 common:
   - type: LinkedIn
