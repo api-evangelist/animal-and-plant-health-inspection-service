@@ -105,6 +105,8 @@ type: Index
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: Government
 common:
+  - type: DomainSecurity
+    url: security/animal-and-plant-health-inspection-service-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/usda-aphis
   - url: https://www.aphis.usda.gov/
