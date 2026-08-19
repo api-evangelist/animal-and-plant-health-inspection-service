@@ -11,6 +11,9 @@ providerId: animal-and-plant-health-inspection-service
 publisherName: Animal and Plant Health Inspection Service
 serviceCategory: API
 created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
 modified: '2026-05-04'
 tags:
   - Agriculture
