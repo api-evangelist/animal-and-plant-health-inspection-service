@@ -7,6 +7,13 @@ apis:
     tags:
       - Agriculture
       - Animal Health
+      - Federal-Government
+      - Permits
+      - Plant Health
+      - Search
+    tags_raw:
+      - Agriculture
+      - Animal Health
       - Federal Government
       - Permits
       - Plant Health
@@ -24,6 +31,14 @@ apis:
   - aid: animal-and-plant-health-inspection-service:aphis-efile-api
     name: APHIS eFile Permitting System
     tags:
+      - Agriculture
+      - Animal Health
+      - Federal-Government
+      - Import Export
+      - Permits
+      - Plant Health
+      - Regulatory
+    tags_raw:
       - Agriculture
       - Animal Health
       - Federal Government
@@ -50,6 +65,13 @@ apis:
     tags:
       - Agriculture
       - Commodities
+      - Federal-Government
+      - Import
+      - Plant Health
+      - Regulatory
+    tags_raw:
+      - Agriculture
+      - Commodities
       - Federal Government
       - Import
       - Plant Health
@@ -68,6 +90,14 @@ apis:
   - aid: animal-and-plant-health-inspection-service:aphis-geospatial-hub
     name: APHIS and AMS Geospatial Hub
     tags:
+      - Agriculture
+      - Animal Health
+      - Federal-Government
+      - Geospatial
+      - GIS
+      - Mapping
+      - Plant Health
+    tags_raw:
       - Agriculture
       - Animal Health
       - Federal Government
@@ -89,6 +119,19 @@ apis:
       health surveillance, pest and disease tracking, and quarantine management.
 name: Animal and Plant Health Inspection Service
 tags:
+  - Agriculture
+  - Animal Health
+  - Animal Welfare
+  - Biotechnology
+  - Federal-Government
+  - Import Export
+  - Permits
+  - Pest Control
+  - Plant Health
+  - Regulatory
+  - USDA
+  - Wildlife
+tags_raw:
   - Agriculture
   - Animal Health
   - Animal Welfare
