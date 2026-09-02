@@ -1,0 +1,129 @@
+generated: '2026-09-02'
+method: derived
+source: >-
+  Derived from live ArcGIS REST metadata at
+  https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services and from the OIDC discovery
+  documents on the three APHIS Salesforce hosts, probed 2026-09-02. APHIS publishes no API
+  conventions document of its own.
+specification: API Commons Conventions
+specificationVersion: '0.1'
+provider: Animal and Plant Health Inspection Service
+providerId: animal-and-plant-health-inspection-service
+summary: >-
+  APHIS has no API style guide, so the conventions below are the platform conventions of the two
+  systems it runs on. The read surface is ArcGIS REST; the identity surface is OIDC on Salesforce
+  Experience Cloud. There is no first-party APHIS HTTP API and therefore no APHIS-authored envelope,
+  error format, pagination contract, or versioning rule.
+auth_style:
+  read_surface: none - anonymous GET/query on the ArcGIS feature services
+  identity_surface: OpenID Connect authorization code (see authentication/animal-and-plant-health-inspection-service-authentication.yml)
+  api_keys: not issued
+  see_also: authentication/animal-and-plant-health-inspection-service-authentication.yml
+idempotency:
+  supported: na
+  header: null
+  scope: null
+  retention: null
+  note: >-
+    Not applicable. The published surface is read-only - every ArcGIS service declares capabilities
+    Query (two also declare Extract) and none expose Create/Update/Delete. With no public write
+    operation there is nothing for an idempotency key to protect. This is an honest `na`, not a gap.
+dry_run_mode:
+  supported: na
+  note: Read-only surface; there is no mutating call to rehearse.
+reversibility:
+  supported: na
+  grade: na
+  note: >-
+    The published API surface has no write operations, so no reversal operation can exist and none
+    is claimed. Recorded as `na` rather than zero.
+  write_surfaces_behind_auth:
+    - surface: APHIS eFile Permitting System
+      reversal_operations_documented: false
+      window_documented: false
+      note: >-
+        eFile is a real write surface for humans - it accepts permit applications, amendments,
+        renewals and withdrawals - but it is a browser application behind USDA eAuthentication with
+        no API and no published contract. APHIS does not state a withdrawal or cancellation window
+        for a submitted permit application in any machine-readable form, so NO window is asserted
+        here. Any agent-relevant reversibility for eFile is undocumented.
+pagination:
+  style: offset
+  params:
+    offset: resultOffset
+    limit: resultRecordCount
+    order: orderByFields
+  response_fields:
+    exceeded_limit: exceededTransferLimit
+  page_size_default: 2000
+  page_size_max: 2000
+  note: >-
+    ArcGIS REST convention. maxRecordCount is 2000 on most services and 1000 on
+    PPQ_GIS_Federal_Quarantine_Feature_Layer and Barberry_Service. A truncated response sets
+    exceededTransferLimit true; returnIdsOnly with maxIdsCount 1000000 is the escape hatch for
+    large extracts.
+  see_also: rate-limits/animal-and-plant-health-inspection-service-rate-limits.yml
+filtering_and_projection:
+  where: SQL-92 subset via the `where` parameter
+  field_selection: outFields (comma list, or * for all)
+  spatial_filter: geometry + geometryType + spatialRel + inSR
+  aggregation: groupByFieldsForStatistics + outStatistics
+  distinct: returnDistinctValues
+  count_only: returnCountOnly
+  note: >-
+    This is a genuinely expressive query surface - richer than most REST APIs in the catalog - but a
+    consumer only knows it exists if they already know ArcGIS REST, because APHIS documents none of it.
+content_negotiation:
+  mechanism: query parameter, not Accept header
+  param: f
+  values:
+    - json
+    - geojson
+    - pjson
+    - html
+  export_formats:
+    - csv
+    - geojson
+    - kml
+    - shapefile
+    - filegdb
+    - geoPackage
+    - sqlite
+    - excel
+    - featureCollection
+  note: The Accept header is ignored; format is selected with f=.
+error_envelope:
+  format: arcgis
+  rfc9457: false
+  shape: '{"error":{"code":<int>,"message":"<string>","details":["<string>"]}}'
+  http_status_on_error: 200
+  note: >-
+    Application errors are returned with HTTP 200 and an error object in the body. A client that
+    branches on the status code alone will treat every failure as a success. This is the single
+    most agent-hostile convention on the surface.
+  see_also: conformance/animal-and-plant-health-inspection-service-conformance.yml
+rate_limit_signaling:
+  headers: none
+  retry_after: false
+  note: No rate-limit or Retry-After headers are emitted or documented.
+request_id_tracing:
+  supported: false
+  header: null
+  note: No correlation or request-id header is returned on the ArcGIS responses.
+versioning:
+  in_url: false
+  in_header: false
+  scheme: none
+  note: >-
+    The /arcgis/rest/services path carries no API version segment; currentVersion in the service
+    directory is the Esri platform version. See lifecycle/.
+metadata_and_expansion:
+  metadata_fields: false
+  expansion: false
+  note: >-
+    No user-defined metadata bag and no $expand-style relation expansion. Cross-layer joins must be
+    done client-side on FIPS codes or locality strings - see
+    data-model/animal-and-plant-health-inspection-service-data-model.yml.
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com

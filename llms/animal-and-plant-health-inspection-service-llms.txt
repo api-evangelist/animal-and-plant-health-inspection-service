@@ -1,0 +1,85 @@
+# USDA Animal and Plant Health Inspection Service (APHIS)
+
+> APHIS is the US Department of Agriculture agency that safeguards American agriculture and natural
+> resources against pests and disease, regulates animal welfare, and licenses the import, export and
+> interstate movement of plants, animals and their products. It operates several public digital
+> services. It publishes no OpenAPI, no GraphQL schema, no MCP server and no agent card. Its one
+> genuinely machine-readable, anonymously callable API surface is a set of 93 public ArcGIS REST
+> feature services operated by USDA Marketing and Regulatory Programs (MRP), the APHIS/AMS umbrella.
+
+<!--
+generated: 2026-09-02
+method: generated
+source: apis.yml plus the artifacts in this repository, all of which were probed or searched on
+        2026-09-02. APHIS serves no /llms.txt of its own; probed www.aphis.usda.gov/llms.txt
+        (no response - edge bot mitigation), efile.aphis.usda.gov/llms.txt (401),
+        acir.aphis.usda.gov/llms.txt (401), aphis.my.site.com/llms.txt (401),
+        pcit/vehcs/vsapps.aphis.usda.gov/llms.txt (404/403).
+-->
+
+## Callable API surface
+
+- [USDA-MRP ArcGIS REST service directory](https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services?f=json): 93 public FeatureServer services, anonymous read, no key. This is the only APHIS surface an agent can call today.
+- [Federal plant quarantine boundaries](https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/PPQ_GIS_Federal_Quarantine_Feature_Layer/FeatureServer/1/query?where=1%3D1&outFields=*&f=geojson): PPQ federal quarantine polygons with state, county, program, status and a link to the establishing regulatory document.
+- [Federal citrus quarantines](https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Federal_Citrus_Quarantine_Data/FeatureServer?f=json): five layers - Asian citrus psyllid, citrus black spot, citrus canker, citrus greening (HLB), sweet orange scab.
+- [Emerald ash borer federal quarantine](https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Federal_Emerald_Ash_Borer_Beetle_Quarantine/FeatureServer?f=json)
+- [HPAI livestock events](https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/VS_HPAI_Livestock_Events_Feature_Layer/FeatureServer?f=json): Veterinary Services highly pathogenic avian influenza confirmations in cattle by state.
+- [New World Screwworm cases and initial detections](https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/VS_NWS_Cases_and_Initial_Detections_for_States/FeatureServer?f=json)
+- [Bovine TB herds](https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/VS_TB_Herd_Pub/FeatureServer?f=json) and [brucellosis herds](https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Brucellosis_Herds/FeatureServer?f=json)
+- [RHDV2 rabbit hemorrhagic disease county case counts](https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/RHDV2_USCounties_CaseCount_2020_2023/FeatureServer?f=json)
+- [Oral rabies vaccination zones](https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/ORV_Zones/FeatureServer?f=json): Wildlife Services ORV grids and campaign areas.
+
+### How to call it
+
+Format is chosen with `f=` (json, geojson, pjson), not the Accept header. Filter with `where=` (SQL-92
+subset), select fields with `outFields=`, page with `resultOffset` / `resultRecordCount`. Page size is
+capped at `maxRecordCount`: 2000 on most services, 1000 on PPQ_GIS_Federal_Quarantine_Feature_Layer and
+Barberry_Service; a truncated response sets `exceededTransferLimit: true`.
+
+**Errors are returned with HTTP 200.** A failure looks like
+`{"error":{"code":400,"message":"...","details":[...]}}` with a 200 status. Do not branch on the status
+code alone - inspect the body for an `error` key on every response.
+
+Use of this data is subject to the [MRP Map and Data Disclaimer](https://www.aphis.usda.gov/map-data-disclaimer).
+
+## Human-facing applications (no API)
+
+- [APHIS eFile](https://efile.aphis.usda.gov/s/) - apply for import, interstate movement, transit and release permits; renewals, amendments, annual reports. Requires a USDA eAuthentication account. [Overview](https://www.aphis.usda.gov/efile), [help](https://www.aphis.usda.gov/efile/help), [training](https://www.aphis.usda.gov/efile/training).
+- [Agricultural Commodity Import Requirements (ACIR)](https://acir.aphis.usda.gov/s/) - searchable APHIS import requirements for agricultural commodities by commodity and country of origin.
+- [Animal Care Public Search Tool](https://aphis.my.site.com/PublicSearchTool/s/) - search Animal Welfare Act licensees, registrants and inspection reports.
+- [PCIT](https://pcit.aphis.usda.gov/pcit/faces/signIn.jsf) - phytosanitary certificate issuance and tracking.
+- [VEHCS](https://vehcs.aphis.usda.gov/vehcs/faces/login_initial.jsf) - veterinary export health certification.
+- [VSPS](https://vsapps.aphis.usda.gov/vsps/public/Login.do) - Veterinary Services process streamlining.
+- [Data visualization tools](https://www.aphis.usda.gov/data-visualization-tools) - ~37 dashboards and story maps. Human-readable only; the underlying layers are the feature services above.
+
+## Authentication
+
+APHIS issues no API keys. The feature services need no authentication at all. Everything else sits
+behind [USDA eAuthentication](https://www.eauth.usda.gov/home) ([register](https://www.eauth.usda.gov/eauth/b/usda/registration),
+[FAQ](https://www.eauth.usda.gov/eauth/b/usda/faq)), federated into Salesforce Experience Cloud. Each of
+the three Salesforce hosts serves a live OpenID Connect discovery document:
+[eFile](https://efile.aphis.usda.gov/.well-known/openid-configuration),
+[ACIR](https://acir.aphis.usda.gov/.well-known/openid-configuration),
+[Public Search Tool](https://aphis.my.site.com/.well-known/openid-configuration).
+Client registration is not open to the public.
+
+## What APHIS does not publish
+
+An agent should not go looking for these; they were probed on 2026-09-02 and are absent:
+OpenAPI or Swagger, GraphQL, WSDL/SOAP, gRPC/protobuf, AsyncAPI or webhooks, an MCP server, an A2A
+agent card, `/llms.txt`, `/.well-known/security.txt`, `/.well-known/api-catalog`, a status page, a
+changelog, a deprecation or versioning policy, an SLA, a client SDK in any package registry, a GitHub
+organization, published rate limits, and any pricing or plans (APHIS is a federal agency; the services
+are free, though statutory permit user fees apply to some regulatory transactions).
+
+The APHIS-specific data.gov organization (`catalog.data.gov/organization/aphis-usda-gov`) now returns
+404; APHIS datasets are reachable under the department-wide
+[USDA organization](https://catalog.data.gov/organization/usda).
+
+## Support
+
+- General: https://www.aphis.usda.gov/contact-us - aphis.customersupport@usda.gov, 844-820-2234
+- eFile help desk: help@usda.gov, 877-944-8457, https://help.aphis.usda.gov
+- Website: aphisweb@usda.gov
+- FOIA: https://www.aphis.usda.gov/freedom-information-act
+- Privacy: https://www.usda.gov/privacy-policy

@@ -1,0 +1,436 @@
+generated: '2026-09-02'
+method: derived
+source: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services - ArcGIS REST service directory and per-layer
+  metadata probed 2026-09-02 (HTTP 200)
+specification: API Commons Data Model
+specificationVersion: '0.1'
+provider: Animal and Plant Health Inspection Service
+providerId: animal-and-plant-health-inspection-service
+note: 'Derived from the live ArcGIS REST metadata of the USDA-MRP feature services, not from any APHIS-published
+  object reference - APHIS publishes none. Only the ten flagship services were walked layer-by-layer; the tenant
+  carries 93 services in total (see services_total). The model is flat and denormalised: there is no shared entity
+  registry, no surrogate primary key beyond per-layer OBJECTID, and joins between layers are made on FIPS codes
+  or on locality strings. That is the finding, not a gap in the derivation.'
+ownership: The tenant 2C1NQ7u6M6SXoa8p on Esri ArcGIS Online is the USDA Marketing and Regulatory Programs (MRP)
+  organization - every item is owned by an account suffixed _usda_mrp, the service names map to named APHIS programs
+  (PPQ, VS, WS), and APHIS's own Map and Data Disclaimer at https://www.aphis.usda.gov/map-data-disclaimer states
+  the data is the "sole property" of MRPBS, APHIS or AMS. The Esri-hosted domain is the tenant arrangement, the
+  same way a customer-subdomain server block names a real host.
+services_total: 93
+services_walked: 10
+arcgis_rest_version: 12
+access: anonymous read; capabilities are Query (a few services also Extract). No write surface is exposed.
+id_conventions:
+- field: OBJECTID
+  meaning: ArcGIS per-layer surrogate row id. Not stable across service republishes; never use it as a durable reference.
+- field: FIPS / STATE_FIPS / CNTY_FIPS
+  meaning: US Census FIPS geographic codes - the only cross-layer joinable identifier in the model.
+- field: RegDoc / RegDocLink
+  meaning: Citation and URL of the Federal Register document or APHIS regulatory notice establishing a quarantine.
+- field: epi_week
+  meaning: Epidemiological week, used on New World Screwworm case layers for time-series animation.
+entities:
+- entity: Asian Citrus Psyllid Federal Quarantine
+  service: Federal_Citrus_Quarantine_Data
+  layer_id: 2
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Federal_Citrus_Quarantine_Data/FeatureServer/2
+  program: PPQ - Plant Protection and Quarantine
+  capabilities: Query
+  max_record_count: 2000
+  geometry_type: esriGeometryPolygon
+  fields:
+  - OBJECTID
+  - PestProgram
+  - QuarantineUnit
+  - QuarantineName
+  - RegDoc
+  - RegDocLink
+  - Status
+  - State
+  - RemovedDate
+  - created_user
+  - created_date
+  - last_edited_user
+  - last_edited_date
+  - EstablishedDate
+  - LastModified
+  - Shape__Area
+  - Shape__Length
+- entity: Citrus Black Spot Federal Quarantine
+  service: Federal_Citrus_Quarantine_Data
+  layer_id: 3
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Federal_Citrus_Quarantine_Data/FeatureServer/3
+  program: PPQ - Plant Protection and Quarantine
+  capabilities: Query
+  max_record_count: 2000
+- entity: Citrus Canker Federal Quarantine
+  service: Federal_Citrus_Quarantine_Data
+  layer_id: 4
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Federal_Citrus_Quarantine_Data/FeatureServer/4
+  program: PPQ - Plant Protection and Quarantine
+  capabilities: Query
+  max_record_count: 2000
+- entity: Citrus Greening (Huanglongbing) Federal Quarantine
+  service: Federal_Citrus_Quarantine_Data
+  layer_id: 5
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Federal_Citrus_Quarantine_Data/FeatureServer/5
+  program: PPQ - Plant Protection and Quarantine
+  capabilities: Query
+  max_record_count: 2000
+- entity: Sweet Orange Scab Federal Quarantine
+  service: Federal_Citrus_Quarantine_Data
+  layer_id: 6
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Federal_Citrus_Quarantine_Data/FeatureServer/6
+  program: PPQ - Plant Protection and Quarantine
+  capabilities: Query
+  max_record_count: 2000
+- entity: COMPILED_EAB
+  service: Federal_Emerald_Ash_Borer_Beetle_Quarantine
+  layer_id: 0
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Federal_Emerald_Ash_Borer_Beetle_Quarantine/FeatureServer/0
+  program: PPQ - Plant Protection and Quarantine
+  capabilities: Query
+  max_record_count: 2000
+  geometry_type: esriGeometryPolygon
+  fields:
+  - OBJECTID
+  - PestProgram
+  - QuarantineUnit
+  - QuarantineName
+  - RegDoc
+  - RegDocLink
+  - Status
+  - State
+  - RemovedDate
+  - created_user
+  - created_date
+  - last_edited_user
+  - last_edited_date
+  - EstablishedDate
+  - LastModified
+  - Shape__Area
+  - Shape__Length
+- entity: Quarantine AGOL
+  service: PPQ_GIS_Federal_Quarantine_Feature_Layer
+  layer_id: 1
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/PPQ_GIS_Federal_Quarantine_Feature_Layer/FeatureServer/1
+  program: PPQ - Plant Protection and Quarantine
+  capabilities: Query,Extract
+  max_record_count: 1000
+  geometry_type: esriGeometryPolygon
+  fields:
+  - OBJECTID
+  - Quarantine_State
+  - Quarantine_State_Abbr
+  - Quarantine_County
+  - Quarantine_Program
+  - Quarantine_Status
+  - Quarantine_Unit
+  - Quarantine_Name
+  - Quarantine_Statewide
+  - Quarantine_Statewide_Date
+  - Quarantine_Established_Date
+  - Quarantine_Modified_Date
+  - Quarantine_Removed_Date
+  - Quarantine_Reg_Doc
+  - Quarantine_Reg_Doc_Link
+  - Quarantine_Program_Link
+  - Quarantine_Additional_Link
+  - Quarantine_SQMI
+  - Quarantine_Acres
+  - Quarantine_Text_A
+  - Quarantine_Text_B
+  - Quarantine_Text_ID
+  - Quarantine_County_FIPS
+  - Quarantine_Unit_Desc
+  - Shape__Area
+- entity: NWS Cases
+  service: VS_NWS_Cases_and_Initial_Detections_for_States
+  layer_id: 0
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/VS_NWS_Cases_and_Initial_Detections_for_States/FeatureServer/0
+  program: VS - Veterinary Services
+  capabilities: Query
+  max_record_count: 2000
+  geometry_type: esriGeometryPoint
+  fields:
+  - OBJECTID
+  - n
+  - collection_date
+  - province
+  - district
+  - corregimiento
+  - town
+  - farm
+  - LATITUDE
+  - LONGITUDE
+  - especie
+  - epi_week
+  - country
+- entity: Initial Detections by State
+  service: VS_NWS_Cases_and_Initial_Detections_for_States
+  layer_id: 1
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/VS_NWS_Cases_and_Initial_Detections_for_States/FeatureServer/1
+  program: VS - Veterinary Services
+  capabilities: Query
+  max_record_count: 2000
+- entity: time_island
+  service: VS_NWS_Cases_and_Initial_Detections_for_States
+  layer_id: 2
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/VS_NWS_Cases_and_Initial_Detections_for_States/FeatureServer/2
+  program: VS - Veterinary Services
+  capabilities: Query
+  max_record_count: 2000
+- entity: HPAI_Cattle_ConfDateMMYY_GIS_States
+  service: VS_HPAI_Livestock_Events_Feature_Layer
+  layer_id: 11
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/VS_HPAI_Livestock_Events_Feature_Layer/FeatureServer/11
+  program: VS - Veterinary Services
+  capabilities: Query
+  max_record_count: 2000
+  geometry_type: esriGeometryPolygon
+  fields:
+  - OBJECTID
+  - STATE_ABBR
+  - STATE_FIPS
+  - STATE_NAME
+  - OBJECTID_1
+  - Conf_MMYY
+  - Incident_Site
+  - Total
+  - Shape__Area
+  - Shape__Length
+- entity: Grids_Web
+  service: ORV_Zones
+  layer_id: 9
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/ORV_Zones/FeatureServer/9
+  program: WS - Wildlife Services
+  capabilities: Query,Extract
+  max_record_count: 2000
+  geometry_type: esriGeometryPolygon
+  fields:
+  - OBJECTID
+  - year
+  - fiscal_year
+  - campaign
+  - project
+  - name
+  - method
+  - density
+  - area0
+  - adjustment
+  - style
+  - target
+  - actual
+  - spacing
+  - state
+  - status
+  - globalid
+  - first_date
+  - last_date
+  - created_user
+  - created_date
+  - last_edited_user
+  - last_edited_date
+  - Shape__Area
+  - Shape__Length
+- entity: States
+  service: ORV_Zones
+  layer_id: 11
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/ORV_Zones/FeatureServer/11
+  program: WS - Wildlife Services
+  capabilities: Query,Extract
+  max_record_count: 2000
+- entity: Brucellosis_Herds
+  service: Brucellosis_Herds
+  layer_id: 0
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Brucellosis_Herds/FeatureServer/0
+  program: VS - Veterinary Services
+  capabilities: Query
+  max_record_count: 2000
+  geometry_type: esriGeometryPoint
+  fields:
+  - OBJECTID_1
+  - NAME
+  - STATE_NAME
+  - STATE_FIPS
+  - CNTY_FIPS
+  - FIPS
+  - AREA
+  - county_state_centroids
+  - POINT_X
+  - POINT_Y
+  - OBJECTID
+  - Herd1
+  - Date_Detected
+  - Method_of_Detection
+  - Herd_Type2
+  - Herd_Management_Status
+  - Next_Test_Tentative_Start_Date
+  - Letter
+  - bruc_data_County2
+  - bruc_data_State3
+  - county_state_bruc
+- entity: TB_Herds
+  service: VS_TB_Herd_Pub
+  layer_id: 1
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/VS_TB_Herd_Pub/FeatureServer/1
+  program: VS - Veterinary Services
+  capabilities: Query
+  max_record_count: 2000
+  geometry_type: esriGeometryPoint
+  fields:
+  - OBJECTID_1
+  - Location
+  - Date_Detected
+  - Method_of_Detection
+  - Herd_Type
+  - Herd_Management_Plan
+  - Next_activity
+  - Next_activity_start_date
+  - County
+  - State
+  - Additional_information
+  - statenamelong
+  - county_state
+  - state_county
+  - OBJECTID
+  - NAME
+  - STATE_NAME
+  - STATE_FIPS
+  - CNTY_FIPS
+  - FIPS
+  - AREA
+  - county_state_centroids
+  - POINT_X
+  - POINT_Y
+  - State_County_1
+- entity: RHDV2_USCounties_CaseCount_2020_2023
+  service: RHDV2_USCounties_CaseCount_2020_2023
+  layer_id: 0
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/RHDV2_USCounties_CaseCount_2020_2023/FeatureServer/0
+  program: VS - Veterinary Services
+  capabilities: Query
+  max_record_count: 2000
+  geometry_type: esriGeometryPolygon
+  fields:
+  - OBJECTID
+  - County
+  - State
+  - FIPS
+  - WIld_Apr
+  - Wild_May
+  - Wild_Jun
+  - Wild_Jul
+  - Wild_Aug
+  - Wild_Sep
+  - Wild_Oct
+  - Wild_SUM
+  - Dom_Mar
+  - Dom_Apr
+  - Dom_May
+  - Dom_Jun
+  - Dom_Jul
+  - Dom_Aug
+  - Dom_Sept
+  - Dom_Oct
+  - Dom_SUM
+  - Dom_Nov
+  - Dom_Dec
+  - Wild_Nov
+  - Wild_Dec
+- entity: Barberry Eradication Point
+  service: Barberry_Service
+  layer_id: 0
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Barberry_Service/FeatureServer/0
+  program: PPQ - Plant Protection and Quarantine
+  capabilities: Query
+  max_record_count: 1000
+  geometry_type: esriGeometryPoint
+  fields:
+  - OBJECTID_1
+  - OBJECTID
+  - DateOrigSr
+  - FormL
+  - State_FIPS
+  - Cnty_FIPS
+  - FormL_FIPS
+  - State
+  - County
+  - City
+  - Township
+  - Range
+  - Section
+  - Quarter
+  - Lat
+  - Long
+  - City_Rural
+  - No_Planted
+  - No_Escaped
+  - Seedlings
+  - Fruit
+  - No_Resurve
+  - Dispositio
+- entity: Wheat (density)
+  service: Barberry_Service
+  layer_id: 1
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Barberry_Service/FeatureServer/1
+  program: PPQ - Plant Protection and Quarantine
+  capabilities: Query
+  max_record_count: 1000
+- entity: Winter Wheat (density)
+  service: Barberry_Service
+  layer_id: 2
+  url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services/Barberry_Service/FeatureServer/2
+  program: PPQ - Plant Protection and Quarantine
+  capabilities: Query
+  max_record_count: 1000
+relationships:
+- from: Quarantine AGOL
+  to: US State
+  type: belongs_to
+  via: Quarantine_State / Quarantine_State_Abbr
+  note: Every federal quarantine polygon is keyed to a state and county by name, not by a surrogate id.
+- from: Quarantine AGOL
+  to: US County
+  type: belongs_to
+  via: Quarantine_County
+- from: Quarantine AGOL
+  to: Pest Program
+  type: belongs_to
+  via: Quarantine_Program
+  note: Program is the discriminator that separates ALB, EAB, citrus, spongy moth and fire ant quarantine sets.
+- from: Asian Citrus Psyllid Federal Quarantine
+  to: Regulatory Document
+  type: has_one
+  via: RegDoc / RegDocLink
+  note: RegDocLink is a URL into the Federal Register or APHIS regulatory notice that established the quarantine
+    - the only outbound identifier in the model.
+- from: NWS Cases
+  to: Initial Detections by State
+  type: has_many
+  via: province / district / town locality strings
+  note: No shared surrogate key; the join is textual locality plus collection_date/epi_week.
+- from: TB_Herds
+  to: US County
+  type: belongs_to
+  via: County + State
+- from: Brucellosis_Herds
+  to: US County
+  type: belongs_to
+  via: FIPS
+  note: FIPS is the only true foreign key observed anywhere in the model.
+- from: RHDV2_USCounties_CaseCount_2020_2023
+  to: US County
+  type: belongs_to
+  via: FIPS
+- from: HPAI_Cattle_ConfDateMMYY_GIS_States
+  to: US State
+  type: belongs_to
+  via: STATE_FIPS
+- from: Grids_Web (ORV)
+  to: ORV Campaign
+  type: belongs_to
+  via: campaign / fiscal_year / project
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com

@@ -1,0 +1,118 @@
+generated: '2026-09-02'
+method: derived
+source: >-
+  Derived from the live ArcGIS REST feature services at
+  https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services (probed 2026-09-02). No APHIS
+  MCP server was found.
+specification: API Commons MCP
+specificationVersion: '0.1'
+provider: Animal and Plant Health Inspection Service
+providerId: animal-and-plant-health-inspection-service
+status: candidate
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: none
+  verified: searched
+  note: >-
+    APHIS ships no MCP server, hosted or local. Searched the APHIS site, the USDA developer pages,
+    npm and PyPI, and probed every APHIS host for an MCP endpoint - nothing. The `mcp_api` string
+    that appears in the OIDC scopes_supported array on the three Salesforce hosts is a Salesforce
+    platform capability advertised by the tenant, NOT an APHIS-published MCP server, and it must
+    not be read as one. The tools below are a CANDIDATE surface derived by this pipeline from
+    operations that genuinely exist on the anonymous ArcGIS query API; nobody serves them.
+candidate_basis: >-
+  Each candidate tool maps to a real, anonymous, currently-callable ArcGIS REST query operation.
+  Input schemas are the documented ArcGIS query parameters, not invented ones. No endpoint URL is
+  proposed, because no server exists to host one.
+tools:
+  - name: list_aphis_geospatial_services
+    description: List the public USDA-MRP feature services and the programs (PPQ, VS, WS, AMS) they belong to.
+    backing_request: GET /arcgis/rest/services?f=json
+    input_schema:
+      type: object
+      properties: {}
+    confidence: high
+  - name: query_federal_plant_quarantine
+    description: >-
+      Query federal plant quarantine boundaries by state, county, pest program, or status, and
+      return polygons plus the establishing regulatory document link.
+    backing_request: GET /PPQ_GIS_Federal_Quarantine_Feature_Layer/FeatureServer/1/query
+    input_schema:
+      type: object
+      properties:
+        where:
+          type: string
+          description: 'SQL-92 subset, e.g. Quarantine_Program = ''Emerald Ash Borer'' AND Quarantine_State_Abbr = ''OH'''
+        outFields:
+          type: string
+          default: '*'
+        f:
+          type: string
+          enum: [json, geojson, pjson]
+          default: geojson
+        resultOffset:
+          type: integer
+        resultRecordCount:
+          type: integer
+          maximum: 1000
+    confidence: high
+  - name: query_citrus_quarantine
+    description: Query the five federal citrus quarantine layers (Asian citrus psyllid, black spot, canker, greening/HLB, sweet orange scab).
+    backing_request: GET /Federal_Citrus_Quarantine_Data/FeatureServer/{2..6}/query
+    input_schema:
+      type: object
+      properties:
+        layer:
+          type: integer
+          enum: [2, 3, 4, 5, 6]
+        where: {type: string}
+        outFields: {type: string, default: '*'}
+        f: {type: string, default: geojson}
+    confidence: high
+  - name: query_livestock_disease_events
+    description: >-
+      Query APHIS Veterinary Services disease-event layers - HPAI livestock events, bovine TB herds,
+      brucellosis herds, RHDV2 county case counts, New World Screwworm cases.
+    backing_request: GET /{VS_HPAI_Livestock_Events_Feature_Layer|VS_TB_Herd_Pub|Brucellosis_Herds|RHDV2_USCounties_CaseCount_2020_2023|VS_NWS_Cases_and_Initial_Detections_for_States}/FeatureServer/{layer}/query
+    input_schema:
+      type: object
+      properties:
+        service: {type: string}
+        layer: {type: integer}
+        where: {type: string}
+        outFields: {type: string, default: '*'}
+        f: {type: string, default: geojson}
+    confidence: high
+  - name: query_oral_rabies_vaccination_zones
+    description: Query APHIS Wildlife Services oral rabies vaccination zones and grids by fiscal year, campaign, and project.
+    backing_request: GET /ORV_Zones/FeatureServer/{9,11}/query
+    input_schema:
+      type: object
+      properties:
+        where: {type: string, description: 'e.g. fiscal_year = 2025'}
+        outFields: {type: string, default: '*'}
+        f: {type: string, default: geojson}
+    confidence: high
+  - name: export_aphis_layer
+    description: Export a whole feature layer as GeoJSON, CSV, KML, shapefile, or GeoPackage.
+    backing_request: GET /{service}/FeatureServer/{layer}/query with returnIdsOnly / paged resultOffset, or the Extract capability where declared
+    input_schema:
+      type: object
+      properties:
+        service: {type: string}
+        layer: {type: integer}
+        format: {type: string, enum: [geojson, csv, kml, shapefile, geoPackage, filegdb, excel]}
+    confidence: medium
+    note: Only PPQ_GIS_Federal_Quarantine_Feature_Layer and ORV_Zones declare the Extract capability; the rest must be paged through /query.
+mcp_gap:
+  note: >-
+    A remote MCP server over these six operations would be a small, entirely mechanical build - the
+    query surface is anonymous, read-only, already machine-readable, and covers federal quarantine
+    boundaries and livestock disease detections that agents are actually asked about. Nothing about
+    the data is sensitive; it is already public.
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com

@@ -1,0 +1,109 @@
+generated: '2026-09-02'
+method: probed
+source: >-
+  https://efile.aphis.usda.gov/.well-known/openid-configuration (HTTP 200),
+  https://acir.aphis.usda.gov/.well-known/openid-configuration (HTTP 200),
+  https://aphis.my.site.com/.well-known/openid-configuration (HTTP 200),
+  plus https://www.aphis.usda.gov/efile/help (USDA eAuthentication requirement)
+specification: API Commons Authentication
+specificationVersion: '0.1'
+provider: Animal and Plant Health Inspection Service
+providerId: animal-and-plant-health-inspection-service
+docs: https://www.eauth.usda.gov/eauth/b/usda/faq
+summary: >-
+  APHIS publishes no developer API with its own key-issuance flow. Every APHIS digital
+  service that carries an identity boundary authenticates through USDA eAuthentication,
+  federated into the Salesforce Experience Cloud tenants that host APHIS eFile, ACIR and
+  the Animal Care Public Search Tool. Each of those three hosts serves a live OpenID
+  Connect Discovery 1.0 document whose issuer is the APHIS host itself, so an OIDC/OAuth 2.0
+  authorization-code surface is measurably present - but it is a platform sign-in surface
+  for the web applications, not a documented developer API. The one genuinely anonymous
+  machine-readable surface APHIS operates, the USDA-MRP ArcGIS REST feature services,
+  requires no authentication at all for read/query.
+schemes:
+  - id: oidc-efile
+    type: openIdConnect
+    applies_to: APHIS eFile Permitting System
+    openIdConnectUrl: https://efile.aphis.usda.gov/.well-known/openid-configuration
+    issuer: https://efile.aphis.usda.gov
+    authorization_endpoint: https://efile.aphis.usda.gov/services/oauth2/authorize
+    token_endpoint: https://efile.aphis.usda.gov/services/oauth2/token
+    userinfo_endpoint: https://efile.aphis.usda.gov/services/oauth2/userinfo
+    jwks_uri: https://efile.aphis.usda.gov/id/keys
+    revocation_endpoint: https://efile.aphis.usda.gov/services/oauth2/revoke
+    introspection_endpoint: https://efile.aphis.usda.gov/services/oauth2/introspect
+    registration_endpoint: https://efile.aphis.usda.gov/services/oauth2/register
+    end_session_endpoint: https://efile.aphis.usda.gov/services/auth/idp/oidc/logout
+    grant_types:
+      - authorization_code
+      - implicit
+    response_types_supported:
+      - code
+      - token
+      - token id_token
+    token_endpoint_auth_methods_supported:
+      - client_secret_post
+      - client_secret_basic
+      - private_key_jwt
+    id_token_signing_alg_values_supported:
+      - RS256
+    dpop_signing_alg_values_supported:
+      - RS256
+      - RS384
+      - RS512
+      - ES256
+      - ES384
+      - ES512
+      - EdDSA
+    subject_types_supported:
+      - public
+    scope_count: 36
+    note: >-
+      Client registration is not open. USDA eAuthentication account required; the
+      registration_endpoint is the Salesforce platform default and is not documented by
+      APHIS as a public onboarding path.
+  - id: oidc-acir
+    type: openIdConnect
+    applies_to: Agricultural Commodity Import Requirements (ACIR)
+    openIdConnectUrl: https://acir.aphis.usda.gov/.well-known/openid-configuration
+    issuer: https://acir.aphis.usda.gov
+    authorization_endpoint: https://acir.aphis.usda.gov/services/oauth2/authorize
+    token_endpoint: https://acir.aphis.usda.gov/services/oauth2/token
+    jwks_uri: https://acir.aphis.usda.gov/id/keys
+    scope_count: 36
+    note: ACIR search itself is browsable without sign-in; the OIDC surface backs authenticated features.
+  - id: oidc-public-search
+    type: openIdConnect
+    applies_to: APHIS Public Search Tool (Animal Care)
+    openIdConnectUrl: https://aphis.my.site.com/.well-known/openid-configuration
+    issuer: https://aphis.my.site.com
+    authorization_endpoint: https://aphis.my.site.com/services/oauth2/authorize
+    token_endpoint: https://aphis.my.site.com/services/oauth2/token
+    jwks_uri: https://aphis.my.site.com/id/keys
+    scope_count: 36
+  - id: anonymous-arcgis
+    type: none
+    applies_to: USDA-MRP ArcGIS REST Feature Services
+    note: >-
+      The 93 public feature services under
+      https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services answer
+      unauthenticated GET/query. No token, key, or referrer restriction was observed on
+      probe. Services declare capabilities Query (a few also Extract) - read-only.
+    probed: '2026-09-02'
+    probe_status: 200
+identity_provider:
+  name: USDA eAuthentication
+  url: https://www.eauth.usda.gov/home
+  registration: https://www.eauth.usda.gov/eauth/b/usda/registration
+  faq: https://www.eauth.usda.gov/eauth/b/usda/faq
+  note: >-
+    Level 2 verified eAuthentication account is the prerequisite for APHIS eFile, VSPS,
+    VEHCS and PCIT. Identity proofing is a government process, not a self-service developer
+    signup.
+gaps:
+  - No developer-facing API key issuance or client-credentials flow is documented anywhere on aphis.usda.gov.
+  - No documented scope reference; the 36 scopes on the discovery documents are Salesforce platform defaults, not an APHIS-authored permission model.
+  - No machine-readable contract (OpenAPI/GraphQL/WSDL/gRPC) exists to bind these schemes to operations.
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com

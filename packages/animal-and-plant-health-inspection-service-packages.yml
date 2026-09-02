@@ -1,0 +1,56 @@
+generated: '2026-09-02'
+method: searched
+source: >-
+  npm (registry.npmjs.org search), PyPI, RubyGems, crates.io, NuGet, Packagist, and the GitHub
+  organization namespace - all queried 2026-09-02
+specification: API Commons Packages
+specificationVersion: '0.1'
+provider: Animal and Plant Health Inspection Service
+providerId: animal-and-plant-health-inspection-service
+summary: >-
+  APHIS publishes no client library, SDK, or CLI in any public package registry, and operates no
+  GitHub organization. There is nothing first-party to record. The absence is expected: with no
+  machine-readable API contract there is nothing for an SDK to wrap.
+package_count: 0
+official_package_count: 0
+packages: []
+registries_checked:
+  - registry: npm
+    query: registry.npmjs.org/-/v1/search?text=aphis
+    status: 200
+    first_party_hits: 0
+    note: >-
+      Three unrelated results, all third-party test/squatter packages
+      (@dsr-rollback-org-sooks-aphis-.../..., gg-team-aphis-transacts). None reference USDA or APHIS.
+  - registry: pypi
+    query: pypi.org/pypi/{aphis,usda-aphis,aphis-api,pyaphis}/json
+    status: 404
+    first_party_hits: 0
+  - registry: rubygems
+    query: rubygems.org/api/v1/gems/{aphis,usda-aphis}.json
+    status: 404
+    first_party_hits: 0
+  - registry: crates.io
+    query: crates.io/api/v1/crates?q=aphis
+    status: 200
+    first_party_hits: 0
+    note: Substring matches only (lp-modeler, oxygraphis).
+  - registry: nuget
+    query: azuresearch-usnc.nuget.org/query?q=aphis
+    status: 200
+    first_party_hits: 0
+  - registry: packagist
+    query: packagist.org/search.json?q=aphis
+    status: 200
+    first_party_hits: 0
+  - registry: github
+    query: api.github.com/orgs/{usda-aphis,USDA-APHIS}
+    status: 404
+    first_party_hits: 0
+    note: >-
+      No APHIS GitHub organization exists. The department-level USDA org carries three public repos
+      (USDA/USDA-APIs, an issue tracker last pushed 2023-06-20; USDA/RIDB; USDA/data-standards) and
+      none of them is an APHIS client library.
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com

@@ -1,0 +1,85 @@
+generated: '2026-09-02'
+method: searched
+source: >-
+  https://www.aphis.usda.gov/efile, https://www.aphis.usda.gov/efile/help,
+  https://www.aphis.usda.gov/data-visualization-tools, plus live probes on 2026-09-02
+specification: API Commons Lifecycle
+specificationVersion: '0.1'
+provider: Animal and Plant Health Inspection Service
+providerId: animal-and-plant-health-inspection-service
+summary: >-
+  APHIS operates production digital services but publishes no API lifecycle apparatus. There is no
+  versioning policy, no deprecation policy, no Sunset/Deprecation header practice, no SLA, no
+  changelog, and no status page. The only version signal anywhere on the surface is the ArcGIS REST
+  currentVersion advertised by the Esri platform, which is Esri's version and not APHIS's.
+versioning:
+  policy_published: false
+  scheme: none
+  note: >-
+    No APHIS surface is versioned in a URL, header, or media type. The ArcGIS feature services report
+    currentVersion 12, which is the ArcGIS Online platform release, not a contract version APHIS
+    controls or commits to.
+  evidence:
+    - url: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services?f=json
+      status: 200
+      detail: currentVersion 12 (Esri platform version)
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: >-
+    No deprecation policy or notice period is published. Service turnover is observable in the data
+    instead: the tenant carries multiple superseded copies of the same layer (NASS_2017_STATE_1_049dc,
+    _15cfe, _472f3, _8b447, _abf8b, _b5103; RHDV2 case-count 2020-2021 alongside 2020-2023) with no
+    marker saying which is current and no removal date on the stale ones. A consumer cannot tell a
+    live layer from an abandoned one.
+  deprecated_operations: []
+  observed_supersession:
+    - current: RHDV2_USCounties_CaseCount_2020_2023
+      superseded:
+        - RHDV2_USCounties_CaseCount_2020_2021
+        - RHDV2_USCounties_CaseCount_2020_2021_View
+        - RHDV2_USCounties_CaseCount_2020_2021_View2
+      basis: date range in the service name; neither is marked deprecated
+    - current: unknown
+      superseded:
+        - NASS_2017_COUNTY__withzeroes_View_2904f
+        - NASS_2017_COUNTY__withzeroes_View_a8071
+        - NASS_2017_COUNTY__withzeroes_View_fd7c7
+      basis: six hash-suffixed clones of one layer; no canonical marker
+status_page:
+  published: false
+  url: null
+  evidence:
+    - url: https://status.aphis.usda.gov/
+      status: <no response>
+      detail: host does not resolve
+    - url: https://efile.aphis.usda.gov/s/status
+      status: 200
+      detail: Salesforce Experience Cloud catch-all, not a status page
+  note: >-
+    Outage and maintenance information is distributed by email and by the eFile help desk
+    (help@usda.gov / 877-944-8457), not by a machine-readable status endpoint.
+sla:
+  published: false
+  note: No availability or support-response commitment is published for any APHIS digital service.
+changelog:
+  published: false
+  note: >-
+    No dated changelog or release-notes page exists for eFile, ACIR, the Public Search Tool, or the
+    geospatial services. The eFile Help page links only to training material and support contacts.
+  evidence:
+    - url: https://www.aphis.usda.gov/efile/help
+      status: 200
+      detail: no release notes, status page, or technical specification links present
+support:
+  help_desk_email: help@usda.gov
+  help_desk_phone: 877-944-8457
+  help_portal: https://help.aphis.usda.gov
+  general_support: https://www.aphis.usda.gov/contact-us
+  customer_support_email: aphis.customersupport@usda.gov
+  web_support_email: aphisweb@usda.gov
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com

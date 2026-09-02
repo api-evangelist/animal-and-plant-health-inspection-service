@@ -1,0 +1,130 @@
+generated: '2026-09-02'
+method: probed
+source: live HTTPS probes of every apis.yml baseURL host and every host discovered in STEP 0b
+specification: API Commons Well-Known
+specificationVersion: '0.1'
+provider: Animal and Plant Health Inspection Service
+providerId: animal-and-plant-health-inspection-service
+note: >-
+  Probed the named RFC/de-facto well-known path list on all seven APHIS-operated hosts.
+  The only served documents are OpenID Connect discovery documents on the three Salesforce
+  Experience Cloud sites (APHIS eFile, ACIR, and the Animal Care Public Search Tool). Those
+  are genuine RFC 8414 / OIDC Discovery 1.0 documents whose `issuer` is the APHIS host itself,
+  so they are served by APHIS-controlled hosts even though the OpenID Provider is the
+  Salesforce platform APHIS runs those applications on. No security.txt, no api-catalog,
+  no ai-plugin.json, and no agent card is served anywhere. www.aphis.usda.gov terminates
+  the HTTP/2 stream for non-browser clients (Akamai bot mitigation), so every path on that
+  host is recorded as `<no response>` rather than as an absence - the site itself is
+  demonstrably live and renders in a browser-equivalent fetch.
+hosts:
+  - host: efile.aphis.usda.gov
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: animal-and-plant-health-inspection-service-efile-openid-configuration.json
+        content_type: application/json;charset=UTF-8
+        note: OIDC Discovery 1.0 document, issuer https://efile.aphis.usda.gov
+      - path: /.well-known/security.txt
+        status: 401
+      - path: /.well-known/api-catalog
+        status: 401
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+      - path: /.well-known/ai-plugin.json
+        status: 401
+      - path: /.well-known/agent-card.json
+        status: 401
+      - path: /.well-known/agent.json
+        status: 401
+  - host: acir.aphis.usda.gov
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: animal-and-plant-health-inspection-service-acir-openid-configuration.json
+        content_type: application/json;charset=UTF-8
+        note: OIDC Discovery 1.0 document, issuer https://acir.aphis.usda.gov
+      - path: /.well-known/security.txt
+        status: 401
+      - path: /.well-known/api-catalog
+        status: 401
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+      - path: /.well-known/ai-plugin.json
+        status: 401
+      - path: /.well-known/agent-card.json
+        status: 401
+      - path: /.well-known/agent.json
+        status: 401
+  - host: aphis.my.site.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: animal-and-plant-health-inspection-service-publicsearch-openid-configuration.json
+        content_type: application/json;charset=UTF-8
+        note: OIDC Discovery 1.0 document, issuer https://aphis.my.site.com
+      - path: /.well-known/security.txt
+        status: 401
+      - path: /.well-known/api-catalog
+        status: 401
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+      - path: /.well-known/ai-plugin.json
+        status: 401
+      - path: /.well-known/agent-card.json
+        status: 401
+      - path: /.well-known/agent.json
+        status: 401
+  - host: www.aphis.usda.gov
+    documents:
+      - path: /.well-known/security.txt
+        status: <no response>
+        note: HTTP/2 stream reset (INTERNAL_ERROR) for non-browser clients; edge bot mitigation, not an absence
+      - path: /.well-known/api-catalog
+        status: <no response>
+      - path: /.well-known/openid-configuration
+        status: <no response>
+      - path: /.well-known/agent-card.json
+        status: <no response>
+      - path: /.well-known/agent.json
+        status: <no response>
+      - path: /.well-known/ai-plugin.json
+        status: <no response>
+  - host: pcit.aphis.usda.gov
+    documents:
+      - path: /.well-known/security.txt
+        status: 500
+      - path: /.well-known/api-catalog
+        status: 500
+      - path: /.well-known/openid-configuration
+        status: 500
+      - path: /.well-known/agent-card.json
+        status: 500
+      - path: /.well-known/agent.json
+        status: 500
+  - host: vehcs.aphis.usda.gov
+    documents:
+      - path: /.well-known/security.txt
+        status: 500
+      - path: /.well-known/api-catalog
+        status: 500
+      - path: /.well-known/openid-configuration
+        status: 500
+      - path: /.well-known/agent-card.json
+        status: 500
+      - path: /.well-known/agent.json
+        status: 500
+  - host: vsapps.aphis.usda.gov
+    documents:
+      - path: /.well-known/security.txt
+        status: 500
+      - path: /.well-known/api-catalog
+        status: 500
+      - path: /.well-known/openid-configuration
+        status: 500
+      - path: /.well-known/agent-card.json
+        status: 500
+      - path: /.well-known/agent.json
+        status: 500
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
