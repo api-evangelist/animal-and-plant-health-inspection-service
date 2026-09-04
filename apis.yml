@@ -281,7 +281,7 @@ common:
   url: finops/animal-and-plant-health-inspection-service-finops.yml
 created: '2024-11-21'
 modified: '2026-09-02'
-position: Consumer
+position: Consuming
 description: >-
   USDA's Animal and Plant Health Inspection Service (APHIS) protects the health
   and value of U.S. agriculture and natural resources by safeguarding against
