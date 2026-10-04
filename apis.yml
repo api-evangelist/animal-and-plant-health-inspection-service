@@ -7,7 +7,7 @@ apis:
   tags:
   - Agriculture
   - Animal Health
-  - Federal-Government
+  - Federal Government
   - Permits
   - Plant Health
   - Search
@@ -18,6 +18,7 @@ apis:
   - Permits
   - Plant Health
   - Search
+  - Federal-Government
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://aphis.my.site.com/PublicSearchTool/s/
   humanURL: https://aphis.my.site.com/PublicSearchTool/s/
@@ -37,7 +38,7 @@ apis:
   tags:
   - Agriculture
   - Animal Health
-  - Federal-Government
+  - Federal Government
   - Import Export
   - Permits
   - Plant Health
@@ -50,6 +51,7 @@ apis:
   - Permits
   - Plant Health
   - Regulatory
+  - Federal-Government
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://efile.aphis.usda.gov
   humanURL: https://efile.aphis.usda.gov/s/
@@ -79,7 +81,7 @@ apis:
   tags:
   - Agriculture
   - Commodities
-  - Federal-Government
+  - Federal Government
   - Import
   - Plant Health
   - Regulatory
@@ -90,6 +92,7 @@ apis:
   - Import
   - Plant Health
   - Regulatory
+  - Federal-Government
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://acir.aphis.usda.gov
   humanURL: https://acir.aphis.usda.gov/s/
@@ -110,7 +113,7 @@ apis:
   tags:
   - Agriculture
   - Animal Health
-  - Federal-Government
+  - Federal Government
   - Geospatial
   - GIS
   - Mapping
@@ -123,6 +126,7 @@ apis:
   - GIS
   - Mapping
   - Plant Health
+  - Federal-Government
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://services7.arcgis.com/2C1NQ7u6M6SXoa8p/arcgis/rest/services
   humanURL: https://www.aphis.usda.gov/aphis-ams-geospatial-hub
@@ -149,7 +153,7 @@ tags:
 - Animal Health
 - Animal Welfare
 - Biotechnology
-- Federal-Government
+- Federal Government
 - Import Export
 - Permits
 - Pest Control
@@ -170,6 +174,7 @@ tags_raw:
 - Regulatory
 - USDA
 - Wildlife
+- Federal-Government
 type: Index
 deliveryModel:
   model: unknown
