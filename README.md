@@ -1,4 +1,4 @@
-# Animal and Plant Health Inspection Service (animal-and-plant-health-inspection-service)
+# Animal and Plant Health Inspection Service
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,99 +66,121 @@
 
 USDA's Animal and Plant Health Inspection Service (APHIS) protects the health and value of U.S. agriculture and natural resources by safeguarding against agricultural pests and diseases, ensuring the welfare of animals, and supporting sustainable agricultural practices. APHIS provides digital services including the eFile permitting system for import/export permits, the Agricultural Commodity Import Requirements (ACIR) portal, a geospatial hub for spatial analysis, data visualization tools, and open datasets via data.gov.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/animal-and-plant-health-inspection-service/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/animal-and-plant-health-inspection-service/refs/heads/main/apis.yml)
+**Areas:** Agriculture · Animal Health · Animal Welfare · Biotechnology · Federal Government · Import Export · Permits · Pest Control · Plant Health · Regulatory · USDA · Wildlife
 
-## Scope
+## Animal and Plant Health Inspection Service on APIs.io
 
-- **Type:** Index
-- **Access:** Government
+Everything profiled for Animal and Plant Health Inspection Service is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/animal-and-plant-health-inspection-service/](https://apis.io/providers/animal-and-plant-health-inspection-service/)** — or go straight to one of the APIs or properties below.
 
-## Tags:
+### APIs (4)
 
- - Agriculture, Animal Health, Animal Welfare, Biotechnology, Federal Government, Import Export, Permits, Pest Control, Plant Health, Regulatory, USDA, Wildlife
+- [APHIS Public Search Tool](https://apis.io/apis/animal-and-plant-health-inspection-service/aphis-public-search-api/) — The APHIS Public Search Tool provides public access to search APHIS program data, permits, and regulatory information related to animal and plant health…
+- [APHIS eFile Permitting System](https://apis.io/apis/animal-and-plant-health-inspection-service/aphis-efile-api/) — APHIS eFile is the web-based permitting system for submitting animal and plant health import/export permit applications, tracking application status,…
+- [Agricultural Commodity Import Requirements (ACIR)](https://apis.io/apis/animal-and-plant-health-inspection-service/aphis-acir-api/) — The Agricultural Commodity Import Requirements (ACIR) system provides searchable access to APHIS import requirements for agricultural commodities, including…
+- [APHIS and AMS Geospatial Hub](https://apis.io/apis/animal-and-plant-health-inspection-service/aphis-geospatial-hub/) — The APHIS and AMS Geospatial Hub is the public geospatial surface of USDA Marketing and Regulatory Programs (MRP), the umbrella covering APHIS and AMS.…
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-11-21
-- **Modified:** 2026-04-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### APHIS Public Search Tool
+Model Context Protocol servers that expose the API to agents.
 
-The APHIS Public Search Tool provides public access to search APHIS program data, permits, and regulatory information related to animal and plant health programs.
+- [animal-and-plant-health-inspection-service-mcp.yml](https://apis.io/servers/animal-and-plant-health-inspection-service/animal-and-plant-health-inspection-service-mcp-yml/)
 
-**Human URL:** [https://aphis.my.site.com/PublicSearchTool/s/](https://aphis.my.site.com/PublicSearchTool/s/)
+#### Security (2)
 
-#### Tags:
+Authentication, trust centre, and vulnerability disclosure.
 
- - Agriculture, Animal Health, Federal Government, Permits, Plant Health, Search
+- [Animal And Plant Health Inspection Service Authentication](https://apis.io/security/animal-and-plant-health-inspection-service/animal-and-plant-health-inspection-service-authentication/)
+- [Animal And Plant Health Inspection Service Domain Security](https://apis.io/security/animal-and-plant-health-inspection-service/animal-and-plant-health-inspection-service-domain-security/)
 
-#### Properties
+#### OAuth scopes (1)
 
-- [Portal](https://aphis.my.site.com/PublicSearchTool/s/)
+The permissions the API asks for.
 
-### APHIS eFile Permitting System
+- [Animal And Plant Health Inspection Service Scopes](https://apis.io/scopes/animal-and-plant-health-inspection-service/animal-and-plant-health-inspection-service-scopes/)
 
-APHIS eFile is the web-based permitting system for submitting animal and plant health import/export permit applications, tracking application status, applying for renewals and amendments, and receiving permit copies online. Integrated with CBP's ACE system for automated permit verification at ports of entry. Requires USDA eAuthentication account.
+#### Plans and pricing (1)
 
-**Human URL:** [https://efile.aphis.usda.gov/s/](https://efile.aphis.usda.gov/s/)
+Published plans, tiers and prices.
 
-#### Tags:
+- [Animal And Plant Health Inspection Service Plans Pricing](https://apis.io/plans/animal-and-plant-health-inspection-service/animal-and-plant-health-inspection-service-plans-pricing/)
 
- - Agriculture, Animal Health, Federal Government, Import Export, Permits, Plant Health, Regulatory
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Portal](https://efile.aphis.usda.gov/s/)
-- [Documentation](https://www.aphis.usda.gov/efile)
+- [Animal And Plant Health Inspection Service Rate Limits](https://apis.io/rate-limits/animal-and-plant-health-inspection-service/animal-and-plant-health-inspection-service-rate-limits/)
 
-### Agricultural Commodity Import Requirements (ACIR)
+#### FinOps (1)
 
-The Agricultural Commodity Import Requirements (ACIR) system provides searchable access to APHIS import requirements for agricultural commodities, including plants, plant products, animals, and animal products by country of origin.
+What the API costs to run, by operation.
 
-**Human URL:** [https://acir.aphis.usda.gov/s/](https://acir.aphis.usda.gov/s/)
+- [Animal And Plant Health Inspection Service Finops](https://apis.io/finops/animal-and-plant-health-inspection-service/animal-and-plant-health-inspection-service-finops/)
 
-#### Tags:
+## Where to find this API
 
- - Agriculture, Commodities, Federal Government, Import, Plant Health, Regulatory
-
-#### Properties
-
-- [Portal](https://acir.aphis.usda.gov/s/)
-
-### APHIS and AMS Geospatial Hub
-
-The APHIS and AMS Geospatial Hub provides GIS mapping applications, spatial data layers, and geospatial analysis tools for animal and plant health surveillance, pest and disease tracking, and quarantine management.
-
-**Human URL:** [https://www.aphis.usda.gov/aphis-ams-geospatial-hub](https://www.aphis.usda.gov/aphis-ams-geospatial-hub)
-
-#### Tags:
-
- - Agriculture, Animal Health, Federal Government, Geospatial, GIS, Mapping, Plant Health
-
-#### Properties
-
-- [Portal](https://www.aphis.usda.gov/aphis-ams-geospatial-hub)
-- [GISPortal](https://www.aphis.usda.gov/plant-pests-diseases/mobile-data-collection/gis-portal)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.aphis.usda.gov/)
-- [Portal](https://www.aphis.usda.gov/efile)
-- [Portal](https://efile.aphis.usda.gov/s/)
-- [Portal](https://acir.aphis.usda.gov/s/)
-- [Portal](https://aphis.my.site.com/PublicSearchTool/s/)
-- [GISPortal](https://www.aphis.usda.gov/aphis-ams-geospatial-hub)
-- [DataVisualization](https://www.aphis.usda.gov/data-visualization-tools)
-- [DataAPI](https://www.aphis.usda.gov/wildlife-services/publications/pdr)
-- [OpenData](https://catalog.data.gov/organization/aphis-usda-gov)
-- [Contact](https://www.aphis.usda.gov/contact/mrpbs-informatics)
-- [FOIA](https://www.aphis.usda.gov/about/foia)
-- [PrivacyPolicy](https://www.aphis.usda.gov/about/privacy-policy)
+- [Documentation](https://www.aphis.usda.gov/efile)
+- [Getting started](https://www.aphis.usda.gov/efile/training)
+- [Sign up](https://www.eauth.usda.gov/eauth/b/usda/registration)
+- [Support](https://www.aphis.usda.gov/contact-us)
+- [Terms of service](https://www.aphis.usda.gov/map-data-disclaimer)
+- [Privacy policy](https://www.usda.gov/privacy-policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
+**Kin Score 33.8** — thin · rubric 0.24.0 · scored 2026-10-17
 
-**Email:** info@apievangelist.com
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 31.6 |
+| Developer ergonomics | 54.8 |
+| Access clarity | 27.6 |
+
+**Agent readiness 13.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 34.3** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/animal-and-plant-health-inspection-service/](https://apis.io/providers/animal-and-plant-health-inspection-service/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Animal and Plant Health Inspection Service: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/animal-and-plant-health-inspection-service/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
